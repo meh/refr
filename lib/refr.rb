@@ -20,8 +20,12 @@ class Reference < BasicObject
   end
 
   def initialize (name, vars)
-    @getter = ::Kernel::eval("lambda { #{name} }", vars)
-    @setter = ::Kernel::eval("lambda { |v| #{name} = v }", vars)
+    begin
+      @getter = ::Kernel::eval("lambda { #{name} }", vars)
+      @setter = ::Kernel::eval("lambda { |v| #{name} = v }", vars)
+    rescue ::Exception => e
+      ::Kernel::raise ::NameError, "#{name} isn't a valid variable name"
+    end
   end
   
   def __get__
