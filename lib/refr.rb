@@ -19,6 +19,12 @@ class Reference < BasicObject
     self.local { :value }
   end
 
+  BasicObject.instance_methods.each {|meth|
+    tmp, $VERBOSE = $VERBOSE, nil
+    undef_method meth
+    $VERBOSE = tmp
+  }
+
   def initialize (name, vars)
     begin
       @getter = ::Kernel::eval("lambda { #{name} }", vars)

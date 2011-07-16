@@ -21,3 +21,5 @@ it was the real object, the only stolen methods are: `__get__`, `__set__`, `~` a
 everything else is sent to the referenced object.
 
 You can also create a reference to an object directly with `Reference.[]`
+
+<span style="font-size: 42px;">THERE'S ONE DOWNSIDE, YOU CAN'T USE THE REFERENCE OBJECT IN A CASE WHERE YOU CHECK FOR THE CLASS, USE `reference.class` IN THOSE SITUATIONS</span>
