@@ -11,11 +11,13 @@
 #++
 
 class Reference < BasicObject
-  Environment = ::Class.new(::BasicObject) {
-    def method_missing (id, *args, &block)
-      id
-    end
-  }.new
+  def self.local (&block)
+    self.new(block.call, block.binding)
+  end
+
+  def self.[] (value)
+    self.local { :value }
+  end
 
   def initialize (name, vars)
     @getter = ::Kernel::eval("lambda { #{name} }", vars)
@@ -37,8 +39,4 @@ class Reference < BasicObject
       super
     end
   end
-end
-
-def ref (&block)
-  Reference.new(Reference::Environment.instance_eval(&block), block.binding)
 end
