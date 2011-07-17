@@ -15,8 +15,8 @@ class Reference < BasicObject
     self.new(block.call, block.binding)
   end
 
-  def self.[] (value)
-    self.local { :value }
+  def self.[] (value, force=false)
+    value.respond_to?(:___is_a_reference___) and not force ? value : self.local { :value }
   end
 
   BasicObject.instance_methods.each {|meth|
@@ -46,5 +46,5 @@ class Reference < BasicObject
     __get__.__send__(id, *args, &block)
   end
 
-  def __is_a_reference__; end
+  def ___is_a_reference___; end
 end
