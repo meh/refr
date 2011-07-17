@@ -47,7 +47,7 @@ class Reference < BasicObject
   end; alias =~ __set_referenced__
 
   def method_missing (id, *args, &block)
-    __get__.__send__(id, *args, &block)
+    __get_referenced__.__send__(id, *args, &block)
   end
 
   def ___is_a_reference___; end
