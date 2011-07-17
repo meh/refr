@@ -16,7 +16,11 @@ class Reference < BasicObject
   end
 
   def self.[] (value, force=false)
-    value.respond_to?(:___is_a_reference___) and not force ? value : self.local { :value }
+    if value.respond_to?(:___is_a_reference___) && !force
+      value
+    else
+      self.local { :value }
+    end
   end
 
   BasicObject.instance_methods.each {|meth|
