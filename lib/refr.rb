@@ -16,7 +16,7 @@ class Reference < BasicObject
   end
 
   def self.[] (value, force=false)
-    if value.respond_to?(:___is_a_reference___) && !force
+    if (value.___is_a_reference___ rescue false) && !force
       value
     else
       self.local { :value }
@@ -50,5 +50,5 @@ class Reference < BasicObject
     __get_referenced__.__send__(id, *args, &block)
   end
 
-  def ___is_a_reference___; end
+  def ___is_a_reference___; true; end
 end
