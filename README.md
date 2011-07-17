@@ -22,4 +22,17 @@ everything else is sent to the referenced object.
 
 You can also create a reference to an object directly with `Reference.[]`
 
-<span style="font-size: 42px;">THERE'S ONE DOWNSIDE, YOU CAN'T USE THE REFERENCE OBJECT IN A CASE WHERE YOU CHECK FOR THE CLASS, USE `reference.class` IN THOSE SITUATIONS</span>
+Cases where the Reference object doesn't work as expected
+---------------------------------------------------------
+There are some situations where the Reference object doesn't work exactly as the object it's referencing,
+this cases are most likely related to C methods, when this happens just remember to use the `~` method
+on the reference to get the referenced object.
+
+* In the `case` statement when comparing for the object's class it doesn't work due to
+  `Module#===` being implemented in C.
+
+* `IO#==` and `IO#===` don't work as expected, this happens to be a problem when using `Array#delete` with a
+  referenced IO object.
+
+If you find any other situations where it's not working as expected open an issue or send me an email
+and I'll add it here.
