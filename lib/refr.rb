@@ -43,10 +43,6 @@ class Reference < BasicObject
   end; alias =~ __set__
 
   def method_missing (id, *args, &block)
-    if __get__.respond_to? id
-      __get__.__send__(id, *args, &block)
-    else
-      super
-    end
+    __get__.__send__(id, *args, &block)
   end
 end
