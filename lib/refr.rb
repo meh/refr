@@ -45,4 +45,6 @@ class Reference < BasicObject
   def method_missing (id, *args, &block)
     __get__.__send__(id, *args, &block)
   end
+
+  def __is_a_reference__; end
 end
