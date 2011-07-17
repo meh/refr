@@ -34,13 +34,13 @@ class Reference < BasicObject
     end
   end
   
-  def __get__
+  def __get_referenced__
     @getter.call
-  end; alias ~ __get__
+  end; alias ~ __get_referenced__
   
-  def __set__ (val)
+  def __set_referenced__ (val)
     @setter.call(val)
-  end; alias =~ __set__
+  end; alias =~ __set_referenced__
 
   def method_missing (id, *args, &block)
     __get__.__send__(id, *args, &block)

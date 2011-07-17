@@ -17,7 +17,7 @@ true
 ```
 
 This is useful especially in an event dispatcher, you can use a reference object as
-it was the real object, the only stolen methods are: `__get__`, `__set__`, `~` and `=~`,
+it was the real object, the only stolen methods are: `__get_referenced__`, `__set_referenced__`, `~` and `=~`,
 everything else is sent to the referenced object.
 
 You can also create a reference to an object directly with `Reference.[]`
