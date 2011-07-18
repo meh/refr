@@ -10,7 +10,7 @@
 #  0. You just DO WHAT THE FUCK YOU WANT TO.
 #++
 
-class Reference < BasicObject
+class Reference
   def self.local (&block)
     self.new(block.call, block.binding)
   end
@@ -23,11 +23,11 @@ class Reference < BasicObject
     end
   end
 
-  BasicObject.instance_methods.each {|meth|
-    tmp, $VERBOSE = $VERBOSE, nil
+  tmp, $VERBOSE = $VERBOSE, nil
+  Object.instance_methods.each {|meth|
     undef_method meth
-    $VERBOSE = tmp
   }
+  $VERBOSE = tmp
 
   def initialize (name, vars)
     begin
