@@ -42,5 +42,7 @@ on the reference to get the referenced object.
 
 * Same of `IO#==` happens for `Symbol`
 
+* Some weird problems seem to happen when returning a Reference from a to_s method.
+
 If you find any other situations where it's not working as expected open an issue or send me an email
 and I'll add it here.

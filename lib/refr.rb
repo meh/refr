@@ -11,15 +11,25 @@
 #++
 
 class Reference
-  def self.local (&block)
-    self.new(block.call, block.binding)
-  end
+  class << self
+    def normalize (value)
+      if (value.___is_a_reference___ rescue false)
+        value.__get_referenced__
+      else
+        value
+      end
+    end; alias - normalize
 
-  def self.[] (value, force=false)
-    if (value.___is_a_reference___ rescue false) && !force
-      value
-    else
-      self.local { :value }
+    def local (&block)
+      self.new(block.call, block.binding)
+    end
+
+    def [] (value, force=false)
+      if (value.___is_a_reference___ rescue false) && !force
+        value
+      else
+        self.local { :value }
+      end
     end
   end
 
