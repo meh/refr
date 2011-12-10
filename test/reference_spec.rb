@@ -6,7 +6,7 @@ describe Reference do
   describe '.local' do
     it 'changes correctly the referenced variable' do
       lol = 2
-      ref = Reference.local{:lol}
+      ref = Reference{:lol}
 
       ref =~ 3
       lol.should == 3

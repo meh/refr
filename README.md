@@ -8,7 +8,7 @@ It's a really simple reference implementation, used in failirc.
 true
 >> lol = 2
 2
->> ref = Reference.local{:lol}
+>> ref = Reference{:lol}
 2
 >> ref =~ "what"
 "what"
@@ -17,10 +17,12 @@ true
 ```
 
 This is useful especially in an event dispatcher, you can use a reference object as
-it was the real object, the only stolen methods are: `__get_referenced__`, `__set_referenced__`, `~` and `=~`,
+it was the real object, the only stolen methods are: `___get_referenced___`, `___set_referenced___`, `~` and `=~`,
 everything else is sent to the referenced object.
 
 You can also create a reference to an object directly with `Reference.[]`
+
+Or you can use the `Kernel#Reference` helper to achieve both.
 
 Cases where the Reference object doesn't work as expected
 ---------------------------------------------------------
